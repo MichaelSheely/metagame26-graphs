@@ -27,6 +27,7 @@ class WeightedGraph:
             sub.add_or_inc(u, v, weight)
         return subgraph
 
+
 def simulate_random_graph():
     nodes = 150
     iterations = 50
@@ -41,7 +42,8 @@ def save_interactive_html(graph):
     net = pyvisnet.Network(notebook=False, height="500px", width="100%")
 
     for node_idx in range(graph.nodes):
-        net.add_node(node_idx)
+        annotation=str(node_idx)
+        net.add_node(node_idx, label=annotation, title=annotation)
 
     for (u, v), weight in graph.edges.items():
         net.add_edge(u, v, value = weight)
