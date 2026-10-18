@@ -2,8 +2,6 @@ import collections
 import random
 
 import pyvis.network as pyvisnet
-import matplotlib.pyplot as plt
-import networkx
 
 RANDOM_SEED = 683061
 rng = random.Random(RANDOM_SEED)
@@ -37,22 +35,6 @@ def simulate_random_graph():
         u, v = rng.sample(range(nodes), 2)
         graph.add_or_inc(u, v, 1)
     return graph
-
-
-def render_static(graph, output_file):
-    nxg = networkx.Graph()
-    nxg.add_nodes_from(range(graph.nodes))
-    nxg.add_edges_from([(u, v) for (u, v) in graph.edges])
-    plt.figure(figsize=(8,6))
-    pos = networkx.spring_layout(nxg, seed=42)
-    networkx.draw_networkx_nodes(
-            nxg, pos, node_size=700, node_color="skyblue")
-    networkx.draw_networkx_edges(
-            nxg, pos, width=2, edge_color="gray")
-
-    plt.title("Players")
-    plt.axis("off")
-    plt.show()
 
 
 def save_interactive_html(graph):
